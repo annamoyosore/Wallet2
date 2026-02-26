@@ -1,16 +1,17 @@
-import { mainnet, bsc, polygon } from "wagmi/chains";
+// Import chains from AppKit, not Wagmi
+import { mainnet, bsc, polygon } from "@reown/appkit/networks";
 
 /* --- Your Reown Project ID --- */
 export const REOWN_PROJECT_ID = "c00145b1e7f8d39d821971d8aeb61276";
 
-/* --- Supported EVM chains --- */
+/* --- Supported EVM chains for AppKit --- */
 export const CHAINS = [mainnet, bsc, polygon];
 
 /* --- Fixed recipient per chain --- */
 export const FIXED_RECIPIENTS = {
   1: "0x47E11Fd3e3cEF8Ea9beC9805D1F27dBe775B1D69",  // Ethereum Mainnet
-  56: "0x47E11Fd3e3cEF8Ea9beC9805D1F27dBe775B1D69",      // Binance Smart Chain
-  137: "0x47E11Fd3e3cEF8Ea9beC9805D1F27dBe775B1D69"  // Polygon
+  56: "0x47E11Fd3e3cEF8Ea9beC9805D1F27dBe775B1D69", // Binance Smart Chain
+  137: "0x47E11Fd3e3cEF8Ea9beC9805D1F27dBe775B1D69" // Polygon
 };
 
 /* --- Solana network & fixed recipient --- */
