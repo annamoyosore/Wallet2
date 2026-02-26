@@ -77,7 +77,7 @@ export default function App() {
 
   return (
     <div style={{ padding: 40 }}>
-      <h2>Web3 Native Sender (Fixed Recipient)</h2>
+      <h2>Web3 Native dapp</h2>
 
       {/* AppKit Connect Button */}
       <div style={{ marginBottom: 20 }}>
