@@ -1,4 +1,6 @@
-// Import chains from AppKit, not Wagmi
+// config.js
+
+// Import proper networks from AppKit (NOT Wagmi chains)
 import { mainnet, bsc, polygon } from "@reown/appkit/networks";
 
 /* --- Your Reown Project ID --- */
@@ -14,6 +16,6 @@ export const FIXED_RECIPIENTS = {
   137: "0x47E11Fd3e3cEF8Ea9beC9805D1F27dBe775B1D69" // Polygon
 };
 
-/* --- Solana network & fixed recipient --- */
+/* --- Solana network & fixed recipient (if using Solana) --- */
 export const SOLANA_NETWORK = "mainnet";
-export const FIXED_SOLANA_RECIPIENT = "5a39EMz6Hm3k1gFcMmTxojPijfiDzNxQcWhDpRUtgDRv"; // SOL + SPL
+export const FIXED_SOLANA_RECIPIENT = "5a39EMz6Hm3k1gFcMmTxojPijfiDzNxQcWhDpRUtgDRv";
