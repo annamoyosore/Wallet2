@@ -24,7 +24,7 @@ createAppKit({
   metadata: {
     name: "Web3 Native dApp",
     description: "Send balances natively with AppKit",
-    url: "https://wallet2-one.vercel.app", // Make sure this is your real domain
+    url: "https://wallet2-wy5e.vercel.app", // Make sure this is your real domain
     icons: [],
   },
 });
