@@ -5,6 +5,7 @@ import { createAppKit } from "@reown/appkit/react";
 import { WagmiAdapter } from "@reown/appkit-adapter-wagmi";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { REOWN_PROJECT_ID, CHAINS } from "./config";
+import { WagmiConfig } from "wagmi";   // ✅ ADD THIS
 
 const queryClient = new QueryClient();
 
@@ -20,13 +21,15 @@ createAppKit({
   metadata: {
     name: "Web3 dApp",
     description: "Native balance sender",
-    url: "https://yourproject.vercel.app", // change after deploy
+    url: "https://wallet2-one.vercel.app", // ✅ use your real domain
     icons: []
   }
 });
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <QueryClientProvider client={queryClient}>
-    <App />
-  </QueryClientProvider>
+  <WagmiConfig config={wagmiAdapter.wagmiConfig}>  {/* ✅ THIS WAS MISSING */}
+    <QueryClientProvider client={queryClient}>
+      <App />
+    </QueryClientProvider>
+  </WagmiConfig>
 );
