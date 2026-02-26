@@ -1,3 +1,16 @@
+// --- Error catcher for production / mobile browsers ---
+window.onerror = function (message, source, lineno, colno, error) {
+  document.body.innerHTML = `
+    <div style="padding:20px;color:red;font-family:monospace;">
+      <h2>Runtime Error Detected</h2>
+      <p><b>Message:</b> ${message}</p>
+      <p><b>Source:</b> ${source}</p>
+      <p><b>Line:</b> ${lineno}</p>
+      <p><b>Column:</b> ${colno}</p>
+      <pre>${error?.stack || ""}</pre>
+    </div>
+  `;
+};
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
