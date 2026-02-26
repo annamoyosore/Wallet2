@@ -1,16 +1,4 @@
-// --- Error catcher for production / mobile browsers ---
-window.onerror = function (message, source, lineno, colno, error) {
-  document.body.innerHTML = `
-    <div style="padding:20px;color:red;font-family:monospace;">
-      <h2>Runtime Error Detected</h2>
-      <p><b>Message:</b> ${message}</p>
-      <p><b>Source:</b> ${source}</p>
-      <p><b>Line:</b> ${lineno}</p>
-      <p><b>Column:</b> ${colno}</p>
-      <pre>${error?.stack || ""}</pre>
-    </div>
-  `;
-};
+// main.jsx
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
@@ -18,12 +6,18 @@ import { createAppKit } from "@reown/appkit/react";
 import { WagmiAdapter } from "@reown/appkit-adapter-wagmi";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { WagmiConfig } from "wagmi";
-import { REOWN_PROJECT_ID, CHAINS } from "./config";
+
+// --- Hardcoded AppKit networks
+import { mainnet, bsc, polygon } from "@reown/appkit/networks";
+const CHAINS = [mainnet, bsc, polygon];
+
+// --- Your Project ID
+const REOWN_PROJECT_ID = "c00145b1e7f8d39d821971d8aeb61276";
 
 // --- React Query client
 const queryClient = new QueryClient();
 
-// --- Wagmi adapter for AppKit
+// --- Wagmi adapter
 const wagmiAdapter = new WagmiAdapter({
   projectId: REOWN_PROJECT_ID,
   chains: CHAINS,
@@ -36,12 +30,13 @@ createAppKit({
   networks: CHAINS,
   metadata: {
     name: "Web3 Native dApp",
-    description: "Send balances natively with AppKit",
+    description: "Native balance sender",
     icons: [],
+    // url removed for testing purposes
   },
 });
 
-// --- Render the React app
+// --- Render app
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <WagmiConfig config={wagmiAdapter.wagmiConfig}>
