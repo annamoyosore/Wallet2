@@ -4,7 +4,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Application Fee | Nersi Relief</title>
+
+<title>Nersi Relief | Application Fee</title>
 
 <style>
 * {
@@ -15,35 +16,66 @@
 
 body {
     font-family: Arial, sans-serif;
-    background: #f1f7f3;
+    background: #f3f8f5;
     color: #26352e;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 header {
     background: #073d32;
+    padding: 22px 7%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
     color: white;
-    padding: 22px;
-    text-align: center;
     font-size: 25px;
     font-weight: bold;
 }
 
-header span {
+.logo span {
     color: #65d6a1;
 }
 
+nav a {
+    color: white;
+    text-decoration: none;
+}
+
+.hero {
+    background: linear-gradient(120deg, #073d32, #16835d);
+    color: white;
+    text-align: center;
+    padding: 45px 20px;
+}
+
+.hero h1 {
+    font-size: 30px;
+    margin-bottom: 12px;
+}
+
+.hero p {
+    line-height: 1.7;
+}
+
 .container {
-    max-width: 480px;
-    margin: 70px auto;
-    padding: 20px;
+    width: 100%;
+    max-width: 520px;
+    margin: 45px auto;
+    padding: 15px;
+    flex: 1;
 }
 
 .payment-box {
     background: white;
     padding: 35px 25px;
     border-radius: 14px;
+    box-shadow: 0 4px 20px #00000010;
     text-align: center;
-    box-shadow: 0 5px 25px #00000012;
 }
 
 .payment-box h2 {
@@ -57,22 +89,29 @@ header span {
 }
 
 .amount {
-    font-size: 38px;
     color: #087c4c;
+    font-size: 42px;
     font-weight: bold;
-    margin: 25px 0;
+    margin: 25px 0 10px;
+}
+
+.fee-label {
+    color: #777;
+    margin-bottom: 25px;
 }
 
 .notice {
     background: #fff5df;
-    padding: 13px;
+    color: #805b16;
+    padding: 15px;
     border-radius: 7px;
     font-size: 13px;
-    color: #805b16;
-    line-height: 1.6;
+    line-height: 1.7;
+    text-align: left;
 }
 
-button {
+.payment-btn {
+    display: block;
     width: 100%;
     padding: 15px;
     background: #16835d;
@@ -81,14 +120,11 @@ button {
     border-radius: 7px;
     font-size: 16px;
     margin-top: 25px;
-    cursor: pointer;
+    cursor: not-allowed;
+    opacity: 0.75;
 }
 
-button:hover {
-    background: #086442;
-}
-
-.back {
+.back-btn {
     display: block;
     margin-top: 22px;
     color: #087c4c;
@@ -96,9 +132,28 @@ button:hover {
 }
 
 footer {
+    background: #073d32;
+    color: white;
     text-align: center;
-    padding: 20px;
-    color: #666;
+    padding: 23px;
+}
+
+@media(max-width: 600px) {
+    header {
+        padding: 20px;
+    }
+
+    .hero h1 {
+        font-size: 26px;
+    }
+
+    .payment-box {
+        padding: 28px 20px;
+    }
+
+    .amount {
+        font-size: 36px;
+    }
 }
 </style>
 </head>
@@ -106,8 +161,26 @@ footer {
 <body>
 
 <header>
-    Nersi <span>Relief</span>
+
+    <div class="logo">
+        Nersi <span>Relief</span>
+    </div>
+
+    <nav>
+        <a href="index.html">Home</a>
+    </nav>
+
 </header>
+
+<section class="hero">
+
+    <h1>Application Fee Information</h1>
+
+    <p>
+        Nersi Relief application information page.
+    </p>
+
+</section>
 
 <div class="container">
 
@@ -116,27 +189,36 @@ footer {
         <h2>Application Fee</h2>
 
         <p class="description">
-            Review the application fee information below.
+            Review the proposed application fee information below.
         </p>
 
         <div class="amount">₦5,000</div>
 
-        <p class="description">
-            Application processing fee
+        <p class="fee-label">
+            Proposed application processing fee
         </p>
 
-        <div class="notice" style="margin-top:22px">
-            This is a demonstration payment page.
+        <div class="notice">
+            <strong>Important Information</strong><br><br>
+
+            This is a demonstration page. The fee has not
+            been independently verified or authorized.
+
             No payment is currently being collected.
-            Confirm the organization, fee and payment terms
-            before requesting payment from applicants.
+            Confirm the organization's identity, eligibility
+            requirements and fee policy before making any
+            payment decision.
         </div>
 
-        <button type="button" onclick="alert('Payment processing has not been configured.')">
-            Proceed to Payment
+        <button
+            type="button"
+            class="payment-btn"
+            disabled
+        >
+            Payment Not Available
         </button>
 
-        <a href="apply.html" class="back">
+        <a href="index.html" class="back-btn">
             ← Back to Application
         </a>
 
