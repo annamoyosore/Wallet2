@@ -236,16 +236,12 @@ footer {
 <footer>
     © 2026 Nersi Relief. All Rights Reserved.
 </footer>
-
 <script>
 document.getElementById("applicationForm")
 .addEventListener("submit", function(event) {
-
     event.preventDefault();
 
-    // No application information is saved or transmitted.
-    window.location.href = "check.html";
-
+    window.location.assign("./check.html");
 });
 </script>
 
