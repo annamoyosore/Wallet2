@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,6 +11,10 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 body {
@@ -40,12 +45,13 @@ header {
 
 nav {
     display: flex;
-    gap: 18px;
+    gap: 20px;
 }
 
 nav a {
     color: white;
     text-decoration: none;
+    font-size: 14px;
 }
 
 nav a:hover {
@@ -53,23 +59,38 @@ nav a:hover {
 }
 
 .hero {
-    background: linear-gradient(120deg,#073d32,#16835d);
+    background: linear-gradient(120deg, #073d32, #16835d);
     color: white;
     text-align: center;
-    padding: 55px 20px;
+    padding: 75px 20px;
 }
 
 .hero h1 {
-    font-size: 34px;
+    font-size: 36px;
     margin-bottom: 15px;
 }
 
 .hero p {
-    line-height: 1.7;
+    line-height: 1.8;
+    margin-bottom: 25px;
+}
+
+.hero-btn {
+    display: inline-block;
+    background: white;
+    color: #087c4c;
+    padding: 14px 25px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.hero-btn:hover {
+    background: #e5f5eb;
 }
 
 .container {
-    max-width: 700px;
+    max-width: 750px;
     margin: 35px auto;
     padding: 15px;
 }
@@ -90,41 +111,67 @@ h2 {
 .about p {
     line-height: 1.8;
     color: #555;
+    margin-bottom: 12px;
+}
+
+.subtitle {
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 20px;
 }
 
 label {
     display: block;
-    margin: 16px 0 8px;
+    margin: 17px 0 8px;
     font-weight: bold;
 }
 
-input, select, textarea {
+input,
+select,
+textarea {
     width: 100%;
-    padding: 13px;
+    padding: 14px;
     border: 1px solid #ddd;
     border-radius: 6px;
     font-size: 15px;
+    background: white;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: #16835d;
 }
 
 textarea {
-    height: 110px;
+    height: 120px;
     resize: vertical;
 }
 
-button {
+.submit-btn {
     width: 100%;
     background: #16835d;
     color: white;
-    padding: 15px;
+    padding: 16px;
     border: none;
     border-radius: 6px;
     font-size: 16px;
-    margin-top: 22px;
+    margin-top: 25px;
     cursor: pointer;
+    font-weight: bold;
 }
 
-button:hover {
+.submit-btn:hover {
     background: #086442;
+}
+
+.notice {
+    margin-top: 18px;
+    color: #777;
+    font-size: 13px;
+    line-height: 1.6;
+    text-align: center;
 }
 
 footer {
@@ -132,19 +179,24 @@ footer {
     color: white;
     text-align: center;
     padding: 25px;
+    margin-top: 40px;
 }
 
-@media(max-width:600px) {
+@media(max-width: 600px) {
     header {
         flex-direction: column;
     }
 
     .hero h1 {
-        font-size: 27px;
+        font-size: 28px;
     }
 
     .box {
         padding: 22px;
+    }
+
+    nav {
+        gap: 15px;
     }
 }
 </style>
@@ -153,23 +205,40 @@ footer {
 <body>
 
 <header>
-    <div class="logo">Nersi <span>Relief</span></div>
+
+    <div class="logo">
+        Nersi <span>Relief</span>
+    </div>
 
     <nav>
         <a href="#home">Home</a>
         <a href="#about">About</a>
         <a href="#application">Apply</a>
     </nav>
+
 </header>
 
 <section class="hero" id="home">
+
     <h1>Welcome to Nersi Relief</h1>
-    <p>Explore community assistance and available support opportunities.</p>
+
+    <p>
+        Explore community assistance and available
+        support opportunities.
+    </p>
+
+    <a href="#application" class="hero-btn">
+        Apply for Assistance
+    </a>
+
 </section>
 
 <div class="container">
 
+    <!-- ABOUT SECTION -->
+
     <section class="box about" id="about">
+
         <h2>About Nersi Relief</h2>
 
         <p>
@@ -178,57 +247,139 @@ footer {
             support opportunities for individuals and families.
         </p>
 
-        <p style="margin-top:12px">
+        <p>
             Our goal is to make assistance information accessible
             and provide a simple application process for people
             seeking support.
         </p>
+
     </section>
+
+    <!-- APPLICATION SECTION -->
 
     <section class="box" id="application">
 
         <h2>Relief Application</h2>
 
-        <p>Please provide the requested information below.</p>
+        <p class="subtitle">
+            Please complete the information below.
+        </p>
 
         <form id="applicationForm">
 
-            <label>Full Name</label>
-            <input type="text" name="fullname" required>
+            <label for="fullname">Full Name</label>
 
-            <label>Email Address</label>
-            <input type="email" name="email" required>
+            <input
+                type="text"
+                id="fullname"
+                name="fullname"
+                placeholder="Enter your full name"
+                autocomplete="name"
+                required
+            >
 
-            <label>Phone Number</label>
-            <input type="tel" name="phone" required>
+            <label for="email">Email Address</label>
 
-            <label>Country</label>
-            <input type="text" name="country" required>
+            <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Enter your email address"
+                autocomplete="email"
+                required
+            >
 
-            <label>State / Region</label>
-            <input type="text" name="state" required>
+            <label for="phone">Phone Number</label>
 
-            <label>Assistance Category</label>
-            <select name="assistance" required>
+            <input
+                type="tel"
+                id="phone"
+                name="phone"
+                placeholder="Enter your phone number"
+                autocomplete="tel"
+                required
+            >
+
+            <label for="country">Country</label>
+
+            <input
+                type="text"
+                id="country"
+                name="country"
+                placeholder="Enter your country"
+                required
+            >
+
+            <label for="state">State / Region</label>
+
+            <input
+                type="text"
+                id="state"
+                name="state"
+                placeholder="Enter your state or region"
+                required
+            >
+
+            <label for="assistance">Assistance Category</label>
+
+            <select
+                id="assistance"
+                name="assistance"
+                required
+            >
                 <option value="">Select category</option>
-                <option>Financial Assistance</option>
-                <option>Food Assistance</option>
-                <option>Educational Support</option>
-                <option>Medical Support</option>
-                <option>Other Support</option>
+                <option value="Financial Assistance">
+                    Financial Assistance
+                </option>
+                <option value="Food Assistance">
+                    Food Assistance
+                </option>
+                <option value="Educational Support">
+                    Educational Support
+                </option>
+                <option value="Medical Support">
+                    Medical Support
+                </option>
+                <option value="Other Support">
+                    Other Support
+                </option>
             </select>
 
-            <label>Amount Requested (Optional)</label>
-            <input type="number" name="amount" min="0">
+            <label for="amount">
+                Amount Requested (Optional)
+            </label>
 
-            <label>Reason for Application</label>
-            <textarea name="reason" required></textarea>
+            <input
+                type="number"
+                id="amount"
+                name="amount"
+                min="0"
+                placeholder="Enter requested amount"
+            >
 
-            <button type="submit">
-                Continue to Application Fee
+            <label for="reason">
+                Reason for Application
+            </label>
+
+            <textarea
+                id="reason"
+                name="reason"
+                placeholder="Explain your request"
+                required
+            ></textarea>
+
+            <button type="submit" class="submit-btn">
+                Continue to Application Information
             </button>
 
         </form>
+
+        <p class="notice">
+            Demonstration form: information entered is not
+            transmitted or stored. Continuing opens the
+            separate application information page.
+        </p>
+
     </section>
 
 </div>
@@ -236,12 +387,18 @@ footer {
 <footer>
     © 2026 Nersi Relief. All Rights Reserved.
 </footer>
+
 <script>
 document.getElementById("applicationForm")
 .addEventListener("submit", function(event) {
+
     event.preventDefault();
 
+    // No form information is collected, stored or transmitted.
+    // Open the separate HTML page in the same browser tab.
+
     window.location.assign("./check.html");
+
 });
 </script>
 
