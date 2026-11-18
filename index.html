@@ -1,203 +1,119 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nersi Relief | Application</title>
+<title>Nersi Relief | Assistance Application</title>
 
 <style>
 * {
-    margin: 0;
-    padding: 0;
     box-sizing: border-box;
 }
 
-html {
-    scroll-behavior: smooth;
-}
-
 body {
+    margin: 0;
     font-family: Arial, sans-serif;
-    background: #f3f8f5;
-    color: #26352e;
+    background: #f2f7f3;
+    color: #26352b;
 }
 
 header {
-    background: #073d32;
-    padding: 20px 7%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 15px;
-}
-
-.logo {
+    background: #147a43;
     color: white;
-    font-size: 25px;
-    font-weight: bold;
+    padding: 25px 15px;
+    text-align: center;
 }
 
-.logo span {
-    color: #65d6a1;
+header h1 {
+    margin: 0;
+    font-size: 28px;
 }
 
-nav {
-    display: flex;
-    gap: 20px;
-}
-
-nav a {
-    color: white;
-    text-decoration: none;
+header p {
+    margin: 8px 0 0;
     font-size: 14px;
 }
 
-nav a:hover {
-    color: #65d6a1;
-}
-
-.hero {
-    background: linear-gradient(120deg, #073d32, #16835d);
-    color: white;
-    text-align: center;
-    padding: 75px 20px;
-}
-
-.hero h1 {
-    font-size: 36px;
-    margin-bottom: 15px;
-}
-
-.hero p {
-    line-height: 1.8;
-    margin-bottom: 25px;
-}
-
-.hero-btn {
-    display: inline-block;
-    background: white;
-    color: #087c4c;
-    padding: 14px 25px;
-    border-radius: 6px;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-.hero-btn:hover {
-    background: #e5f5eb;
-}
-
 .container {
-    max-width: 750px;
-    margin: 35px auto;
-    padding: 15px;
-}
-
-.box {
+    max-width: 650px;
+    margin: 30px auto;
+    padding: 25px;
     background: white;
-    padding: 30px;
     border-radius: 12px;
-    box-shadow: 0 4px 20px #00000010;
-    margin-bottom: 25px;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.07);
 }
 
 h2 {
-    color: #087c4c;
-    margin-bottom: 15px;
+    color: #147a43;
+    margin-top: 0;
 }
 
-.about p {
-    line-height: 1.8;
-    color: #555;
-    margin-bottom: 12px;
-}
-
-.subtitle {
-    color: #666;
+.description {
+    color: #66736a;
     line-height: 1.6;
-    margin-bottom: 20px;
+    font-size: 14px;
+}
+
+.form-group {
+    margin-bottom: 17px;
 }
 
 label {
     display: block;
-    margin: 17px 0 8px;
+    margin-bottom: 7px;
     font-weight: bold;
+    font-size: 14px;
 }
 
-input,
-select,
-textarea {
+input, select, textarea {
     width: 100%;
-    padding: 14px;
-    border: 1px solid #ddd;
-    border-radius: 6px;
+    padding: 13px;
+    border: 1px solid #d5ded7;
+    border-radius: 7px;
     font-size: 15px;
-    background: white;
+    outline: none;
+    background: #fff;
 }
 
-input:focus,
-select:focus,
-textarea:focus {
-    outline: none;
-    border-color: #16835d;
+input:focus, select:focus, textarea:focus {
+    border-color: #147a43;
 }
 
 textarea {
-    height: 120px;
+    min-height: 110px;
     resize: vertical;
 }
 
-.submit-btn {
+.next-button {
     width: 100%;
-    background: #16835d;
-    color: white;
-    padding: 16px;
+    padding: 15px;
     border: none;
-    border-radius: 6px;
+    border-radius: 7px;
+    background: #147a43;
+    color: white;
     font-size: 16px;
-    margin-top: 25px;
-    cursor: pointer;
     font-weight: bold;
+    cursor: pointer;
 }
 
-.submit-btn:hover {
-    background: #086442;
+.next-button:hover {
+    background: #0d6033;
 }
 
 .notice {
-    margin-top: 18px;
-    color: #777;
+    background: #edf7ef;
+    border-left: 4px solid #147a43;
+    padding: 12px;
+    margin-top: 20px;
     font-size: 13px;
     line-height: 1.6;
-    text-align: center;
 }
 
 footer {
-    background: #073d32;
-    color: white;
     text-align: center;
-    padding: 25px;
-    margin-top: 40px;
-}
-
-@media(max-width: 600px) {
-    header {
-        flex-direction: column;
-    }
-
-    .hero h1 {
-        font-size: 28px;
-    }
-
-    .box {
-        padding: 22px;
-    }
-
-    nav {
-        gap: 15px;
-    }
+    padding: 20px;
+    color: #78847b;
+    font-size: 12px;
 }
 </style>
 </head>
@@ -205,199 +121,112 @@ footer {
 <body>
 
 <header>
-
-    <div class="logo">
-        Nersi <span>Relief</span>
-    </div>
-
-    <nav>
-        <a href="#home">Home</a>
-        <a href="#about">About</a>
-        <a href="#application">Apply</a>
-    </nav>
-
+    <h1>Nersi Relief</h1>
+    <p>Assistance Application Portal</p>
 </header>
-
-<section class="hero" id="home">
-
-    <h1>Welcome to Nersi Relief</h1>
-
-    <p>
-        Explore community assistance and available
-        support opportunities.
-    </p>
-
-    <a href="#application" class="hero-btn">
-        Apply for Assistance
-    </a>
-
-</section>
 
 <div class="container">
 
-    <!-- ABOUT SECTION -->
+    <h2>Application Form</h2>
 
-    <section class="box about" id="about">
+    <p class="description">
+        Please complete the information below to continue.
+        Ensure that the information you provide is accurate.
+    </p>
 
-        <h2>About Nersi Relief</h2>
+    <form id="applicationForm">
 
-        <p>
-            Nersi Relief is a proposed community assistance
-            initiative designed to provide information about
-            support opportunities for individuals and families.
-        </p>
+        <div class="form-group">
+            <label for="fullname">Full Name *</label>
+            <input type="text" id="fullname" name="fullname"
+                   placeholder="Enter your full name" required>
+        </div>
 
-        <p>
-            Our goal is to make assistance information accessible
-            and provide a simple application process for people
-            seeking support.
-        </p>
+        <div class="form-group">
+            <label for="email">Email Address *</label>
+            <input type="email" id="email" name="email"
+                   placeholder="Enter your email address" required>
+        </div>
 
-    </section>
+        <div class="form-group">
+            <label for="phone">Phone Number *</label>
+            <input type="tel" id="phone" name="phone"
+                   placeholder="Enter your phone number" required>
+        </div>
 
-    <!-- APPLICATION SECTION -->
+        <div class="form-group">
+            <label for="country">Country *</label>
+            <input type="text" id="country" name="country"
+                   placeholder="Enter your country" required>
+        </div>
 
-    <section class="box" id="application">
+        <div class="form-group">
+            <label for="state">State / Region *</label>
+            <input type="text" id="state" name="state"
+                   placeholder="Enter your state or region" required>
+        </div>
 
-        <h2>Relief Application</h2>
-
-        <p class="subtitle">
-            Please complete the information below.
-        </p>
-
-        <form id="applicationForm">
-
-            <label for="fullname">Full Name</label>
-
-            <input
-                type="text"
-                id="fullname"
-                name="fullname"
-                placeholder="Enter your full name"
-                autocomplete="name"
-                required
-            >
-
-            <label for="email">Email Address</label>
-
-            <input
-                type="email"
-                id="email"
-                name="email"
-                placeholder="Enter your email address"
-                autocomplete="email"
-                required
-            >
-
-            <label for="phone">Phone Number</label>
-
-            <input
-                type="tel"
-                id="phone"
-                name="phone"
-                placeholder="Enter your phone number"
-                autocomplete="tel"
-                required
-            >
-
-            <label for="country">Country</label>
-
-            <input
-                type="text"
-                id="country"
-                name="country"
-                placeholder="Enter your country"
-                required
-            >
-
-            <label for="state">State / Region</label>
-
-            <input
-                type="text"
-                id="state"
-                name="state"
-                placeholder="Enter your state or region"
-                required
-            >
-
-            <label for="assistance">Assistance Category</label>
-
-            <select
-                id="assistance"
-                name="assistance"
-                required
-            >
-                <option value="">Select category</option>
-                <option value="Financial Assistance">
-                    Financial Assistance
-                </option>
-                <option value="Food Assistance">
-                    Food Assistance
-                </option>
-                <option value="Educational Support">
-                    Educational Support
-                </option>
-                <option value="Medical Support">
-                    Medical Support
-                </option>
-                <option value="Other Support">
-                    Other Support
-                </option>
+        <div class="form-group">
+            <label for="category">Assistance Category *</label>
+            <select id="category" name="category" required>
+                <option value="">Select assistance category</option>
+                <option value="Financial Assistance">Financial Assistance</option>
+                <option value="Food Assistance">Food Assistance</option>
+                <option value="Medical Assistance">Medical Assistance</option>
+                <option value="Education Support">Education Support</option>
+                <option value="Housing Support">Housing Support</option>
+                <option value="Other">Other</option>
             </select>
+        </div>
 
-            <label for="amount">
-                Amount Requested (Optional)
-            </label>
+        <div class="form-group">
+            <label for="amount">Amount Requested (Optional)</label>
+            <input type="number" id="amount" name="amount"
+                   min="0" placeholder="Enter amount">
+        </div>
 
-            <input
-                type="number"
-                id="amount"
-                name="amount"
-                min="0"
-                placeholder="Enter requested amount"
-            >
+        <div class="form-group">
+            <label for="reason">Reason for Application *</label>
+            <textarea id="reason" name="reason"
+                      placeholder="Explain why you need assistance"
+                      required></textarea>
+        </div>
 
-            <label for="reason">
-                Reason for Application
-            </label>
+        <button type="button" class="next-button" id="nextButton">
+            Next →
+        </button>
 
-            <textarea
-                id="reason"
-                name="reason"
-                placeholder="Explain your request"
-                required
-            ></textarea>
+    </form>
 
-            <button type="submit" class="submit-btn">
-                Continue to Application Information
-            </button>
-
-        </form>
-
-        <p class="notice">
-            Demonstration form: information entered is not
-            transmitted or stored. Continuing opens the
-            separate application information page.
-        </p>
-
-    </section>
+    <div class="notice">
+        <strong>Privacy notice:</strong>
+        This demonstration form does not transmit or store
+        the information entered. Selecting Next only checks
+        the required fields and opens the next page.
+    </div>
 
 </div>
 
 <footer>
-    © 2026 Nersi Relief. All Rights Reserved.
+    &copy; 2026 Nersi Relief. All rights reserved.
 </footer>
 
 <script>
-document.getElementById("applicationForm")
-.addEventListener("submit", function(event) {
+document.getElementById("nextButton").addEventListener("click", function () {
 
-    event.preventDefault();
+    const form = document.getElementById("applicationForm");
 
-    // No form information is collected, stored or transmitted.
-    // Open the separate HTML page in the same browser tab.
+    // Validate all required fields
+    if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+    }
 
-    window.location.assign("./check.html");
+    // Open check.html in the browser
+    window.location.href = new URL(
+        "check.html",
+        window.location.href
+    ).href;
 
 });
 </script>
